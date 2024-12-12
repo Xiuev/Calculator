@@ -1,8 +1,8 @@
 console.log("hi");
-
+let numPad = Array.from(document.querySelectorAll(".number"));
+let itemDisplay = document.querySelector("#clcDisplayItems");
+//have a "screen" portion be an array? so for example
 //operation FUCNTIONS
-//since parameters will be an array of arguments passed, manupulate array for calculations.
-//since not fixed set of parameters use (rest parameters ex:...Values)
 function Add(...values) {
   let sumOfValues = values.reduce((accum, currentVal) => {
     return accum + currentVal;
@@ -32,5 +32,18 @@ function Divide(...values) {
   return divideOfValues;
 }
 
+function populateScreen() {
+  let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  console.log(digits);
+  //use reduce/map?
+  for (let i = 0; i < numPad.length; i++) {
+    numPad[i].addEventListener("click", () => {
+      itemDisplay.textContent = 7; //testing
+    });
+  }
+}
 function Operate() {}
 //console.log(Divide(10, 2, 4));
+console.log(numPad);
+populateScreen();
+//console.log(itemDisplay);
