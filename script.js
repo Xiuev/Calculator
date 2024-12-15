@@ -1,5 +1,6 @@
 console.log("hi");
 let numPad = Array.from(document.querySelectorAll(".number"));
+let operationPad = Array.from(document.querySelectorAll(".operator"));
 let itemDisplay = document.querySelector("#clcDisplayItems");
 //have a "screen" portion be an array? so for example
 //operation FUCNTIONS
@@ -38,12 +39,47 @@ function populateScreen() {
   //use reduce/map?
   for (let i = 0; i < numPad.length; i++) {
     numPad[i].addEventListener("click", () => {
-      itemDisplay.textContent = 7; //testing
+      switch (i) {
+        case 0:
+          itemDisplay.textContent = 1;
+          break;
+        case 1:
+          itemDisplay.textContent = 2;
+          break;
+        case 2:
+          itemDisplay.textContent = 3;
+          break;
+        case 3:
+          itemDisplay.textContent = 4;
+          break;
+        case 4:
+          itemDisplay.textContent = 5;
+          break;
+        case 5:
+          itemDisplay.textContent = 6;
+          break;
+        case 6:
+          itemDisplay.textContent = 7;
+          break;
+        case 7:
+          itemDisplay.textContent = 8;
+          break;
+        case 8:
+          itemDisplay.textContent = 9;
+          break;
+        case 9:
+          itemDisplay.textContent = 0;
+          break;
+
+        default:
+          console.log("error");
+      }
     });
   }
 }
 function Operate() {}
 //console.log(Divide(10, 2, 4));
 console.log(numPad);
+//console.log(operationPad);
 populateScreen();
 //console.log(itemDisplay);
