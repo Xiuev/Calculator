@@ -42,7 +42,8 @@ function populateScreen() {
     numPad[i].addEventListener("click", () => {
       itemDisplay.textContent = digits[i];
       let userDigitInput = itemDisplay.textContent;
-      console.log(userDigitInput);
+      screenArray.push(userDigitInput);
+      console.log(screenArray);
     });
   }
   //call operate function somewhere
