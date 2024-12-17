@@ -35,16 +35,19 @@ function Divide(...values) {
 
 function populateScreen() {
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  let screenArray = [];
   console.log(digits);
   //use reduce/map?
   for (let i = 0; i < numPad.length; i++) {
     numPad[i].addEventListener("click", () => {
       itemDisplay.textContent = digits[i];
-      console.log(digits[i]);
+      let userDigitInput = itemDisplay.textContent;
+      console.log(userDigitInput);
     });
   }
+  //call operate function somewhere
 }
-function Operate() {}
+function operate() {}
 //console.log(Divide(10, 2, 4));
 console.log(numPad);
 //console.log(operationPad);
