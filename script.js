@@ -35,11 +35,24 @@ function Divide(...values) {
 
 function populateScreen() {
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  let opSigns = ["+", "-", "X", "/"];
   let screenArray = [];
   console.log(digits);
   //use reduce/map?
+  //another for loop for operationPad?
+  for (let i = 0; i < operationPad.length; i++) {
+    operationPad[i].addEventListener("click", () => {
+      itemDisplay.textContent = opSigns[i];
+      //add operations to screenArray
+      // then figure out how to update dom as well
+      userOperationInput = itemDisplay.textContent;
+      screenArray.push(userOperationInput);
+    });
+  }
+
   for (let i = 0; i < numPad.length; i++) {
     numPad[i].addEventListener("click", () => {
+      //convert to int the textContent node specefially
       itemDisplay.textContent = digits[i];
       let userDigitInput = itemDisplay.textContent;
       screenArray.push(userDigitInput);
@@ -51,6 +64,7 @@ function populateScreen() {
 function operate() {}
 //console.log(Divide(10, 2, 4));
 console.log(numPad);
-//console.log(operationPad);
+console.log(operationPad);
 populateScreen();
+
 //console.log(itemDisplay);
