@@ -34,6 +34,7 @@ function Divide(...values) {
 }
 
 function populateScreen() {
+  let isFirstInput = true;
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   let opSigns = ["+", "-", "X", "/"];
   let screenArray = [];
@@ -53,8 +54,10 @@ function populateScreen() {
   for (let i = 0; i < numPad.length; i++) {
     numPad[i].addEventListener("click", () => {
       //convert to int the textContent node specefially
-      itemDisplay.textContent = digits[i];
-      let userDigitInput = itemDisplay.textContent;
+      //itemDisplay.textContent = digits[i];
+      let number = document.createTextNode(digits[i]);
+      itemDisplay.appendChild(number);
+      let userDigitInput = parseInt(itemDisplay.textContent);
       screenArray.push(userDigitInput);
       console.log(screenArray);
     });
@@ -63,8 +66,8 @@ function populateScreen() {
 }
 function operate() {}
 //console.log(Divide(10, 2, 4));
-console.log(numPad);
-console.log(operationPad);
+//console.log(numPad);
+//console.log(operationPad);
 populateScreen();
 
-//console.log(itemDisplay);
+console.log(itemDisplay.textContent);
