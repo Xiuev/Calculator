@@ -55,6 +55,11 @@ function populateScreen() {
     numPad[i].addEventListener("click", () => {
       //convert to int the textContent node specefially
       //itemDisplay.textContent = digits[i];
+      if (itemDisplay.textContent === "0") {
+        // = vs === asignment vs comparision operator : FIX IT
+        // check if current value before appending? --> remove it?
+        itemDisplay.textContent = "";
+      }
       let number = document.createTextNode(digits[i]);
       itemDisplay.appendChild(number);
       let userDigitInput = parseInt(itemDisplay.textContent);
