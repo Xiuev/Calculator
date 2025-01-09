@@ -37,18 +37,26 @@ function Divide(...values) {
 }
 
 function populateScreen() {
+  let currentNumber = 0;
   let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   let opSigns = ["+", "-", "X", "/"];
   let screenArray = [];
-  console.log(digits);
+  //console.log(digits);
 
   for (let i = 0; i < operationPad.length; i++) {
     operationPad[i].addEventListener("click", () => {
       operatorDisplay.textContent = opSigns[i];
       //add operations to screenArray
-      // then figure out how to update dom as well
       userOperationInput = operatorDisplay.textContent;
-      screenArray.push(userOperationInput);
+      if (currentNumber !== "" && !isNaN(currentNumber)) {
+        screenArray.push(currentNumber);
+        currentNumber = 0;
+        itemDisplay.textContent = "";
+        //screenArray.push(userOperationInput);
+      }
+
+      console.log(screenArray);
+      console.log(currentNumber);
     });
   }
 
@@ -64,8 +72,10 @@ function populateScreen() {
       let number = document.createTextNode(digits[i]);
       itemDisplay.appendChild(number);
       let userDigitInput = parseInt(itemDisplay.textContent);
-      screenArray.push(userDigitInput);
-      console.log(screenArray);
+      currentNumber = userDigitInput;
+      //screenArray.push(userDigitInput);
+      //console.log(screenArray);
+      //console.log(currentNumber);
     });
   }
   //call operate function somewhere
