@@ -1,4 +1,4 @@
-console.log("hi");
+console.log("WELCOME TO THE CALCULATOR");
 let numPad = Array.from(document.querySelectorAll(".number"));
 let operationPad = Array.from(document.querySelectorAll(".operator"));
 let itemDisplay = document.querySelector("#clcDisplayNums");
@@ -47,11 +47,13 @@ function populateDisplay() {
   for (let i = 0; i < numPad.length; i++) {
     numPad[i].addEventListener("click", function () {
       if (operatorDisplay.textContent === "") {
-        //append text content to parent
-        //try creating node containing content i want to append
-        //itemDisplay.textContent = "";
-        let newTextNode = document.createTextNode(numPad[i].textContent);
-        itemDisplay.appendChild(newTextNode);
+        if (itemDisplay.textContent === "0") {
+          itemDisplay.textContent = numPad[i].textContent;
+        } else if (typeof itemDisplay.textContent === "string") {
+          //appending here
+          let newTextNode = document.createTextNode(numPad[i].textContent);
+          itemDisplay.appendChild(newTextNode);
+        }
       }
     });
   }
@@ -108,4 +110,4 @@ function divide(...values) {
 
 //console.log(operate(add, 1, 2));
 populateDisplay();
-console.log(operationPad[1].textContent);
+//console.log(operationPad[1].textContent);
