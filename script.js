@@ -14,48 +14,32 @@ let operation = false;
 function populateDisplay() {
   let displayVar1 = 0;
   let displayVar2 = 0;
-  //operateDisplay();
-  function operateDisplay() {
+  numPadDisplay();
+  opDisplay();
+  function opDisplay() {
     for (let i = 0; i < operationPad.length; i++) {
       operationPad[i].addEventListener("click", function () {
-        switch (operationPad[i].textContent) {
-          case "+":
-            operatorDisplay.textContent = "+";
-            break;
-          case "-":
-            operatorDisplay.textContent = "-";
-            break;
-          case "x":
-            operatorDisplay.textContent = "x";
-            break;
-          case "/":
-            operatorDisplay.textContent = "/";
-            break;
-          case "=":
-            operatorDisplay.textContent = "=";
-            break;
-
-          case "C":
-            operatorDisplay.textContent = "";
-            itemDisplay.textContent = "0";
-            itemDisplayTwo.textContent = "";
-            break;
-        }
+        operatorDisplay.textContent = operationPad[i].textContent;
       });
     }
   }
-  for (let i = 0; i < numPad.length; i++) {
-    numPad[i].addEventListener("click", function () {
-      if (operatorDisplay.textContent === "") {
-        if (itemDisplay.textContent === "0") {
-          itemDisplay.textContent = numPad[i].textContent;
-        } else if (typeof itemDisplay.textContent === "string") {
-          //appending here
-          let newTextNode = document.createTextNode(numPad[i].textContent);
-          itemDisplay.appendChild(newTextNode);
+  function numPadDisplay() {
+    for (let i = 0; i < numPad.length; i++) {
+      numPad[i].addEventListener("click", function () {
+        let newTextNode = document.createTextNode(numPad[i].textContent);
+        if (operatorDisplay.textContent === "") {
+          if (itemDisplay.textContent === "0") {
+            itemDisplay.textContent = numPad[i].textContent;
+          } else if (typeof itemDisplay.textContent === "string") {
+            //appending here
+            itemDisplay.appendChild(newTextNode);
+          }
         }
-      }
-    });
+        if (operatorDisplay.textContent !== "") {
+          itemDisplayTwo.appendChild(newTextNode);
+        }
+      });
+    }
   }
 }
 //operation FUCNTIONS
