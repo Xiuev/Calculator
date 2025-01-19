@@ -5,6 +5,8 @@ let itemDisplay = document.querySelector("#clcDisplayNums");
 let itemDisplayTwo = document.querySelector("#clcDisplaySecondNums");
 let operatorDisplay = document.querySelector("#clcDisplayOperator");
 let calcDisplayParent = document.querySelector(".calc-display");
+let equalSignBtn = document.querySelector(".equal");
+let cancelSignBtn = document.querySelector(".cancel");
 
 //operator varibles
 let num1 = 0;
@@ -19,9 +21,23 @@ function populateDisplay() {
   function opDisplay() {
     for (let i = 0; i < operationPad.length; i++) {
       operationPad[i].addEventListener("click", function () {
-        operatorDisplay.textContent = operationPad[i].textContent;
+        if (itemDisplay.textContent !== "") {
+          displayVar1 = Number(itemDisplay.textContent);
+          operatorDisplay.textContent = operationPad[i].textContent;
+          console.log(displayVar1);
+        }
       });
     }
+    equalSignBtn.addEventListener("click", function () {
+      displayVar2 = Number(itemDisplayTwo.textContent);
+      console.log(displayVar2);
+    });
+
+    cancelSignBtn.addEventListener("click", function () {
+      itemDisplay.textContent = "0";
+      operatorDisplay.textContent = "";
+      itemDisplayTwo.textContent = "";
+    });
   }
   function numPadDisplay() {
     for (let i = 0; i < numPad.length; i++) {
