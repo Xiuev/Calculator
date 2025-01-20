@@ -11,7 +11,7 @@ let cancelSignBtn = document.querySelector(".cancel");
 //operator varibles
 let num1 = 0;
 let num2 = 0;
-let operation = false;
+let operationVal = add;
 //display functions
 function populateDisplay() {
   let displayVar1 = 0;
@@ -24,13 +24,32 @@ function populateDisplay() {
         if (itemDisplay.textContent !== "") {
           displayVar1 = Number(itemDisplay.textContent);
           operatorDisplay.textContent = operationPad[i].textContent;
-          console.log(displayVar1);
+          //operationVal = operationPad[i].textContent;
+          //console.log(operationVal);
+        }
+        switch (operatorDisplay.textContent) {
+          case "+":
+            operationVal = add;
+            break;
+          case "-":
+            operationVal = subtract;
+            break;
+          case "x":
+            operationVal = multiply;
+            break;
+          case "/":
+            operationVal = divide;
+            break;
+          default:
+            console.log("ERROR");
         }
       });
     }
     equalSignBtn.addEventListener("click", function () {
       displayVar2 = Number(itemDisplayTwo.textContent);
       console.log(displayVar2);
+      //operate()
+      console.log(operate(operationVal, displayVar1, displayVar2));
     });
 
     cancelSignBtn.addEventListener("click", function () {
