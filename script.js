@@ -16,17 +16,32 @@ let operationVal = add;
 function populateDisplay() {
   let displayVar1 = 0;
   let displayVar2 = 0;
+  let resultDisplayNode = document.createTextNode("");
+
   numPadDisplay();
   opDisplay();
+
   function opDisplay() {
     for (let i = 0; i < operationPad.length; i++) {
       operationPad[i].addEventListener("click", function () {
+        if (
+          itemDisplay.textContent !== "" &&
+          operatorDisplay.textContent !== ""
+        ) {
+          //issue here 2nd val isnt stored yet because "=" isnt pressed
+          //issue: operationVal has prev op, not second one
+          displayVar2 = Number(itemDisplayTwo.textContent);
+          console.log(operate(operationVal, displayVar1, displayVar2));
+          console.log("both are populated!");
+          console.log(displayVar1, displayVar2);
+        }
         if (itemDisplay.textContent !== "") {
           displayVar1 = Number(itemDisplay.textContent);
           operatorDisplay.textContent = operationPad[i].textContent;
           //operationVal = operationPad[i].textContent;
           //console.log(operationVal);
         }
+
         switch (operatorDisplay.textContent) {
           case "+":
             operationVal = add;
@@ -47,21 +62,36 @@ function populateDisplay() {
     }
     equalSignBtn.addEventListener("click", function () {
       displayVar2 = Number(itemDisplayTwo.textContent);
-      console.log(displayVar2);
-      //operate()
-      console.log(operate(operationVal, displayVar1, displayVar2));
+      //let result = operate(operatorDisplay, displayVar1, displayVar2);
+      resultDisplayNode = document.createTextNode(
+        operate(operationVal, displayVar1, displayVar2)
+      );
+      itemDisplay.textContent = "";
+      itemDisplay.appendChild(resultDisplayNode);
+      operatorDisplay.textContent = "";
+      itemDisplayTwo.textContent = "";
+      displayVar1 = 0;
+      displayVar2 = 0;
+      //console.log(itemDisplay.childNodes);
     });
 
     cancelSignBtn.addEventListener("click", function () {
       itemDisplay.textContent = "0";
       operatorDisplay.textContent = "";
       itemDisplayTwo.textContent = "";
+      displayVar1 = 0;
+      displayVar2 = 0;
     });
   }
+
   function numPadDisplay() {
     for (let i = 0; i < numPad.length; i++) {
       numPad[i].addEventListener("click", function () {
         let newTextNode = document.createTextNode(numPad[i].textContent);
+        if (itemDisplay.contains(resultDisplayNode)) {
+          console.log("There is a node!");
+          itemDisplay.textContent = "";
+        }
         if (operatorDisplay.textContent === "") {
           if (itemDisplay.textContent === "0") {
             itemDisplay.textContent = numPad[i].textContent;
